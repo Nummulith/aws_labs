@@ -29,8 +29,9 @@ cd /lab
 ## Show ids script
 
 echo '#!/bin/bash
-echo "uid: $(id -u), gid: $(id -g)"' > /lab/show_ids.sh
+echo "uid: $(id -un), gid: $(id -gn)"' > /lab/show_ids.sh
 sudo chmod +x /lab/show_ids.sh
+chown foo:bar /lab/show_ids.sh
 
 echo
 echo "Show ids script:"
