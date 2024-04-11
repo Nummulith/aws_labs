@@ -6,6 +6,6 @@ while [ $counter -lt 10 ]; do
     ((counter++))
 done
 
-echo ""
+echo "123"
 sleep 10
 echo "slept for ten seconds"
