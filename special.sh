@@ -2,12 +2,12 @@
 
 ## Users and group
 
-useradd foo
-useradd bar
-groupadd labusers
+sudo useradd foo
+sudo useradd bar
+sudo groupadd labusers
 
-usermod -aG labusers foo
-usermod -aG labusers bar
+sudo usermod -aG labusers foo
+sudo usermod -aG labusers bar
 
 echo
 echo "Users and group are created:"
@@ -16,21 +16,19 @@ cut -d: -f1,3 /etc/group | awk -F: '$2 >= 1000 && $2 < 65534 {print $1":"$2}'
 
 ## Lab directory
 
-mkdir /lab
-chown ec2-user:labusers /lab
+sudo mkdir /lab
+sudo chown ec2-user:labusers /lab
 
 echo
 echo "lab folder created:"
 ls -ld /lab
-
-cd /lab
 
 
 ## Show ids script
 
 echo '#!/bin/bash
 echo "uid: $(id -un), gid: $(id -gn)"' > /lab/show_ids.sh
-sudo chmod +x /lab/show_ids.sh
+chmod +x /lab/show_ids.sh
 chown foo:bar /lab/show_ids.sh
 
 echo
@@ -52,3 +50,7 @@ lab_get special_sb
 echo
 echo "Sublabs downloaded:"
 ls /usr/local/bin/special_*.sh
+
+# Next
+echo
+echo "Run special_suid.sh"
