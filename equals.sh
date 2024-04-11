@@ -7,4 +7,4 @@ while [ $counter -lt 10 ]; do
 done
 
 sleep 10
-echo -n "slept for ten seconds"
+echo "slept for ten seconds"
