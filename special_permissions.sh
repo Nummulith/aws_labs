@@ -27,3 +27,6 @@ chown ec2-user:labusers /lab
 
 echo "lab folder created:"
 ls -ld /lab
+
+echo '#!/bin/bash
+echo "uid: $(id -u), gid: $(id -g)"' > show_ids.sh
