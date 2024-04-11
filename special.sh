@@ -26,6 +26,8 @@ ls -ld /lab
 
 echo '#!/bin/bash
 echo "uid: $(id -u), gid: $(id -g)"' > /lab/show_ids.sh
+sudo chmod +x /lab/show_ids.sh
 
 echo "Show ids script:"
+ls -l /lab/show_ids.sh
 cat /lab/show_ids.sh
