@@ -44,7 +44,11 @@ echo
 
 ## show_ids script
 
-echo '#include <stdio.h>, <unistd.h>, <pwd.h>, <grp.h>
+echo '#include <stdio.h>
+#include <unistd.h>
+#include <pwd.h>
+#include <grp.h>
+
 int main() {
     uid_t ruid = getuid(); gid_t rgid = getgid(); uid_t euid = geteuid(); gid_t egid = getegid();
     printf("Real      user: %s(%d):%s(%d)\n", getpwuid(ruid)->pw_name, ruid, getgrgid(rgid)->gr_name, rgid);
