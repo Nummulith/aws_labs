@@ -7,6 +7,7 @@ echo "
 //  Special permissions
 //
 "
+set -x
 
 ###################################
 echo "Users and group are created:"
@@ -87,7 +88,8 @@ lab_get special_sb
 ls /usr/local/bin/special_*.sh
 echo
 
-########
+######
+set +x
 echo "//
 //  Next run special_suid.sh
 //

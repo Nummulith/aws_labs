@@ -7,22 +7,32 @@ echo "
 //  SUID permission
 //
 "
+set -x
 
-##########################
-echo "Set SUID permission"
+###########
+echo "SUID"
 
 cd /lab
 
-sudo chmod u+s show_ids
+sudo chmod u+s,g-s show_ids
 
 ls -l show_ids
-echo
 
-#################
-echo "Run script"
-show_ids.sh
+show_ids
 
-########
+###########
+echo "SGID"
+
+cd /lab
+
+sudo chmod u-s,g+s show_ids
+
+ls -l show_ids
+
+show_ids
+
+######
+set +x
 echo "//
 //  Next run special_suid.sh
 //
