@@ -59,8 +59,8 @@ chmod +x show_ids
 chown foo:bar show_ids
 
 echo "Show ids script:"
-ls -l show_ids.sh
-cat show_ids.sh
+ls -l show_ids
+cat show_ids
 echo
 
 

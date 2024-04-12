@@ -1,12 +1,19 @@
 #!/bin/bash
 
+
 # SUID permission
 
-sudo chmod u+s /lab/show_ids.sh
+cd /lab
+
+sudo chmod u+s show_ids
 
 echo "SUID permission set"
-ls -l /lab/show_ids.sh
+ls -l show_ids
 echo
 
+
+# Run
+
 echo "Running:"
-/lab/show_ids.sh
+show_ids.sh
+
