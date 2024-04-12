@@ -44,19 +44,18 @@ echo
 
 ## Show ids script
 
-echo '
-#include <stdio.h>
-#include <unistd.h>
-int main () {
-    printf("REAL      %d:%d\n", getuid (), getgid ());
-    printf("EFFECTIVE %d:%d\n", geteuid(), getegid());
-}
-' > show_ids.c
+echo '#include <stdio.h>, <unistd.h>, <pwd.h>, <grp.h>
+int main() {
+    uid_t ruid = getuid(); gid_t rgid = getgid(); uid_t euid = geteuid(); gid_t egid = getegid();
+    printf("Real      user: %s(%d):%s(%d)\n", getpwuid(ruid)->pw_name, ruid, getgrgid(rgid)->gr_name, rgid);
+    printf("Effective user: %s(%d):%s(%d)\n", getpwuid(euid)->pw_name, euid, getgrgid(egid)->gr_name, egid);
+    return 0;
+}' > show_ids.c
 
 gcc show_ids.c -o show_ids
 
+sudo chown foo:bar show_ids
 chmod +x show_ids
-chown foo:bar show_ids
 
 echo "Show ids script:"
 ls -l show_ids
