@@ -38,11 +38,11 @@ echo
 sudo yum install -yq gcc
 
 echo 'gcc installed:'
-yum info gcc
+yum info gcc | grep Version
 echo
 
 
-## Show ids script
+## show_ids script
 
 echo '#include <stdio.h>, <unistd.h>, <pwd.h>, <grp.h>
 int main() {
@@ -52,6 +52,13 @@ int main() {
     return 0;
 }' > show_ids.c
 
+echo "Show ids script:"
+cat show_ids.c
+echo
+
+
+## Compiling script
+
 gcc show_ids.c -o show_ids
 
 sudo chown foo:bar show_ids
@@ -59,7 +66,6 @@ chmod +x show_ids
 
 echo "Show ids script:"
 ls -l show_ids
-cat show_ids
 echo
 
 
