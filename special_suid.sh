@@ -7,6 +7,8 @@ echo "
 //  SUID permission
 //
 "
+PS4='+ '
+exec 3>&1
 set -x
 
 ###########
