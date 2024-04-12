@@ -7,6 +7,8 @@ echo "
 //  Special permissions
 //
 "
+PS4='+ '
+exec 3>&1
 set -x
 
 ###################################
