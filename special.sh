@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 ## Users and group
 
 sudo useradd foo
@@ -19,21 +20,47 @@ echo
 sudo mkdir /lab
 sudo chown ec2-user:labusers /lab
 
+cd /lab
+
 echo "lab folder created:"
 ls -ld /lab
 echo
 
 
+# bash show ids script (does not work)
+
+#echo '#!/bin/bash
+#echo "uid: $(id -un), gid: $(id -gn)"' > /lab/show_ids.sh
+
+
+## gcc
+
+sudo yum install -yq gcc
+
+echo 'gcc installed:'
+yum info gcc
+echo
+
+
 ## Show ids script
 
-echo '#!/bin/bash
-echo "uid: $(id -un), gid: $(id -gn)"' > /lab/show_ids.sh
-chmod +x /lab/show_ids.sh
-chown foo:bar /lab/show_ids.sh
+echo '
+#include <stdio.h>
+#include <unistd.h>
+int main () {
+    printf("REAL      %d:%d\n", getuid (), getgid ());
+    printf("EFFECTIVE %d:%d\n", geteuid(), getegid());
+}
+' > show_ids.c
+
+gcc show_ids.c -o show_ids
+
+chmod +x show_ids
+chown foo:bar show_ids
 
 echo "Show ids script:"
-ls -l /lab/show_ids.sh
-cat /lab/show_ids.sh
+ls -l show_ids.sh
+cat show_ids.sh
 echo
 
 
@@ -50,6 +77,7 @@ lab_get special_sb
 echo "Sublabs downloaded:"
 ls /usr/local/bin/special_*.sh
 echo
+
 
 # Next
 echo "Run special_suid.sh"
