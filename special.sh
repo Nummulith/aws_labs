@@ -1,4 +1,5 @@
 #!/bin/bash
+PS4='$ '
 set -v
 
 ##//////////////////////
@@ -22,9 +23,9 @@ cut -d: -f1,3 /etc/group | awk -F: '$2 >= 1000 && $2 < 65534 {print $1":"$2}'
 sudo mkdir /lab
 sudo chown ec2-user:labusers /lab
 
-cd /lab
-
 ls -ld /lab
+
+cd /lab
 
 ## bash show_ids script (SUID, SGID does not work with Bash)
 #echo '#!/bin/bash
