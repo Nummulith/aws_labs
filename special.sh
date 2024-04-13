@@ -1,4 +1,6 @@
 #!/bin/bash
+set +x
+set -v
 
 ######
 echo "
@@ -7,8 +9,6 @@ echo "
 //  Special permissions
 //
 "
-set -v
-set +x
 
 ###################################
 echo "Users and group are created:"
