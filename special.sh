@@ -7,10 +7,13 @@
 
 ## Users and group
 
+sudo groupadd alice_group
 sudo useradd -g alice_group alice
-sudo useradd -g bob_group bob
-sudo groupadd labusers
 
+sudo groupadd bob_group
+sudo useradd -g bob_group bob
+
+sudo groupadd labusers
 sudo usermod -aG labusers alice
 sudo usermod -aG labusers bob
 
