@@ -1,42 +1,30 @@
 #!/bin/bash
-set +x
 set -v
 
-######
-echo "
-////////////////////
-//
-//  SUID permission
-//
-"
-set -v
-set +x
-
-###########
-echo "SUID"
+##//////////////////
+##
+##  SUID permission
+##
 
 cd /lab
+
+## SUID
 
 sudo chmod u+s,g-s show_ids
 
 ls -l show_ids
 
-show_ids
+./show_ids
 
-###########
-echo "SGID"
-
-cd /lab
+## SGID
 
 sudo chmod u-s,g+s show_ids
 
 ls -l show_ids
 
-show_ids
+./show_ids
 
-######
-echo "//
-//  Next run special_suid.sh
-//
-////////////////////////////
-"
+##
+##  Next run special_suid.sh
+##
+##//////////////////////////
