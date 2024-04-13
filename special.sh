@@ -7,10 +7,8 @@ echo "
 //  Special permissions
 //
 "
-set -x
-PS4='+ '
-exec 3>&1
-set -x
+set -v
+set +x
 
 ###################################
 echo "Users and group are created:"
@@ -91,8 +89,7 @@ lab_get special_sb
 ls /usr/local/bin/special_*.sh
 echo
 
-######
-set +x
+########
 echo "//
 //  Next run special_suid.sh
 //

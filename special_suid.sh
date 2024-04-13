@@ -7,10 +7,8 @@ echo "
 //  SUID permission
 //
 "
-set -x
-PS4='+ '
-exec 3>&1
-set -x
+set -v
+set +x
 
 ###########
 echo "SUID"
@@ -35,7 +33,6 @@ ls -l show_ids
 show_ids
 
 ######
-set +x
 echo "//
 //  Next run special_suid.sh
 //
