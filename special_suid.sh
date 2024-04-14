@@ -9,7 +9,7 @@ cd /lab
 
 ## SUID
 
-sudo chmod u+s,g-s show_ids
+chmod u+s,g-s show_ids
 
 ls -l show_ids
 
@@ -17,7 +17,7 @@ ls -l show_ids
 
 ## SGID
 
-sudo chmod u-s,g+s show_ids
+chmod u-s,g+s show_ids
 
 ls -l show_ids
 

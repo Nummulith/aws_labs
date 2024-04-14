@@ -13,16 +13,16 @@ sudo useradd -g alice_group alice
 sudo groupadd bob_group
 sudo useradd -g bob_group bob
 
-sudo groupadd labusers
-sudo usermod -aG labusers alice
-sudo usermod -aG labusers bob
+sudo groupadd lab_users
+sudo usermod -aG lab_users alice
+sudo usermod -aG lab_users bob
 
 cut -d: -f1,3 /etc/group | awk -F: '$2 >= 1000 && $2 < 65534 {print $1":"$2}'
 
 ## lab folder
 
 sudo mkdir /lab
-sudo chown ec2-user:labusers /lab
+sudo chown ec2-user:lab_users /lab
 
 ls -ld /lab
 
@@ -54,8 +54,7 @@ int main() {
 ## Compiling ids_script
 
 gcc show_ids.c -o show_ids
-
-sudo chown alice:bob_group show_ids
+chown :lab_users show_ids
 
 ls -l show_ids
 
