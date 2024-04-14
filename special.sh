@@ -70,7 +70,7 @@ lab_get special_suid
 lab_get special_sgid
 lab_get special_sb
 
-ls /usr/local/bin/special_*.sh
+ls -l /usr/local/bin/special_*.sh
 
 ##
 ##  Next run special_suid.sh

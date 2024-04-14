@@ -8,17 +8,19 @@
 cd /lab
 
 
-## file SGID
+## Run file with SGID
 
 chmod u-s,g+s show_ids
 
 ls -l show_ids
 
 # The program run from its group
-./show_ids
+sudo -u bob ./show_ids
+
+chmod u-s,g-s show_ids
 
 
-## folder SGID
+## Create file in folder with SGID
 
 sudo chmod u-s,u+s /lab
 

@@ -8,19 +8,19 @@
 cd /lab
 
 
-## file SUID
+## Run file with SUID
 
 chmod u+s,g-s show_ids
 
 ls -l show_ids
 
 # The program run from its user
-./show_ids
+sudo -u alice ./show_ids
 
 chmod u-s,g-s show_ids
 
 
-## folder SUID
+## Create file in folder with SUID
 
 sudo chmod u-s,u+s /lab
 
