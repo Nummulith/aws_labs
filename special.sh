@@ -16,6 +16,7 @@ sudo useradd -g bob_group bob
 sudo groupadd lab_users
 sudo usermod -aG lab_users alice
 sudo usermod -aG lab_users bob
+sudo usermod -aG lab_users ec2-user
 
 cut -d: -f1,3 /etc/group | awk -F: '$2 >= 1000 && $2 < 65534 {print $1":"$2}'
 
@@ -54,7 +55,7 @@ int main() {
 ## Compiling ids_script
 
 gcc show_ids.c -o show_ids
-chown :lab_users show_ids
+sudo chown :lab_users show_ids
 
 ls -l show_ids
 
