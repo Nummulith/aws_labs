@@ -1,5 +1,7 @@
 #!/bin/bash -v
 
+## TEST
+
 sudo groupadd lab_users
 sudo usermod -aG lab_users ec2-user
 
