@@ -22,14 +22,14 @@ chmod u-s,g-s show_ids
 
 ## Create file in folder with SGID
 
-sudo chmod u-s,u+s /lab
+chmod u-s,g+s /lab
 
 sudo -u bob touch bob.txt
 
 # SUID affect to group of created file
 ls -l /lab/bob.txt
 
-sudo chmod u-s,u-s /lab
+chmod u-s,g-s /lab
 
 
 ##

@@ -24,6 +24,7 @@ cut -d: -f1,3 /etc/group | awk -F: '$2 >= 1000 && $2 < 65534 {print $1":"$2}'
 
 sudo mkdir /lab
 sudo chown ec2-user:lab_users /lab
+sudo chmod g+w /lab
 
 ls -ld /lab
 
