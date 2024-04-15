@@ -22,7 +22,7 @@ chmod u-s,g-s show_ids
 
 ## Create file in folder with SUID
 
-chmod u-s,g+s /lab
+chmod u+s,g-s /lab
 
 sudo -u alice touch alice.txt
 
