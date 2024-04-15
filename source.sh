@@ -6,26 +6,27 @@
 ##
 
 ## 1. Install tools necessary for compiling software:
-sudo yum groupinstall "Development Tools" -y
+sudo yum groupinstall "Development Tools" -yq
 
 ## 2. Download the Source Code:
 wget https://git.kernel.org/pub/scm/utils/dash/dash.git/snapshot/dash-master.tar.gz
 
 ## 3. Extract the Source Code:
-tar -xvf dash-master.tar.gz
+tar -xvfq dash-master.tar.gz
+
 cd dash-master
 
 ## 4. Run autogen.sh to Prepare the Build Environment:
-./autogen.sh
+./autogen.sh -q
 
 ## 5. Configure the Build (If applicable, depending on the output of autogen.sh):
-./configure
+./configure -q
 
 ## 6. Compile the Source Code:
-make
+make -q
 
 ## 7. Install the Compiled Software:
-sudo make install
+sudo make install -q
 
 ## 8. Verify the Installation Path:
 which dash
