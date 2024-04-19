@@ -8,9 +8,9 @@ sudo chown ec2-user:lab_users dir
 
 touch file
 
-ls -ld dir
+ll
 
 chmod u-s,g+s dir
 chmod u-s,g+s file
 
-ls -ld dir
+ll
