@@ -106,7 +106,7 @@ def get_lab(lab):
     script_content = f'''
     #!/bin/bash
     lab_get() {{
-        sudo curl -fsSL "https://raw.githubusercontent.com/Nummulith/linux_labs/main/$1/$1.sh" -o "/usr/local/bin/$1.sh"
+        sudo curl -fsSL  -H 'Cache-Control: no-cache, no-store' "https://raw.githubusercontent.com/Nummulith/linux_labs/main/$1/$1.sh" -o "/usr/local/bin/$1.sh"
         sudo chmod +x "/usr/local/bin/$1.sh"
     }}
     lab_get {lab}
