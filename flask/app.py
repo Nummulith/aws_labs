@@ -100,5 +100,5 @@ def get_labs():
 
 #curl http://localhost:5000/lab/hello
 @app.get('/books/<lab>')
-def get_books(lab):
+def get_lab(lab):
     return render_template("lab.html", lab=lab)
