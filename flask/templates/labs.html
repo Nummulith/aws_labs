@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Books</title>
+    <title>Labs</title>
     <style>
         table {
             border-collapse: collapse;
@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-    <h2>Books</h2>
+    <h2>Labs</h2>
     <table>
         <thead>
             <tr>
@@ -28,9 +28,9 @@
             </tr>
         </thead>
         <tbody>
-            {% for book in books %}
+            {% for lab in labs %}
             <tr>
-                <td>{{ book }}</td>
+                <td>{{ lab }}</td>
             </tr>
             {% endfor %}
         </tbody>
