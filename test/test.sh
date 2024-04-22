@@ -3,8 +3,8 @@
 ## TEST
 
 file_get() {
-    sudo curl -fsSL "https://raw.githubusercontent.com/Nummulith/linux_labs/main/test$1" -o "~$1"
-    sudo chmod +x "~$1"
+    curl -fsSL "https://raw.githubusercontent.com/Nummulith/linux_labs/main/test$1" -o "~$1"
+    chmod +x "~$1"
 }
 
 mkdir test
