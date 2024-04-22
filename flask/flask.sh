@@ -17,7 +17,7 @@ ls
 # download app
 
 file_get() {
-    curl -fsSL "https://raw.githubusercontent.com/Nummulith/linux_labs/main/flask/$1" -o ~/$1;
+    curl -fsSL -H 'Cache-Control: no-cache, no-store' "https://raw.githubusercontent.com/Nummulith/linux_labs/main/flask/$1" -o ~/$1;
     chmod +x ~/$1;
 }
 

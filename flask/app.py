@@ -99,6 +99,6 @@ def get_labs():
     return render_template("labs.html", labs=directories)
 
 #curl http://localhost:5000/lab/hello
-@app.get('/books/<lab>')
+@app.get('/lab/<lab>')
 def get_lab(lab):
     return render_template("lab.html", lab=lab)
