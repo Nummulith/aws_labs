@@ -97,3 +97,8 @@ def get_labs():
     directories = [content['path'] for content in contents["tree"] if content['type'] == 'tree']
 
     return render_template("labs.html", labs=directories)
+
+#curl http://localhost:5000/lab/hello
+@app.get('/books/<lab>')
+def get_books(lab):
+    return render_template("lab.html", lab=lab)
