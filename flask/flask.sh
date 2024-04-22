@@ -10,6 +10,9 @@ pip3 install --upgrade pip
 pip3 install flask
 flask --version
 
+pip3 install requests
+pip3 install subprocess
+
 cd ~
 pwd
 ls

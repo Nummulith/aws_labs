@@ -1,5 +1,6 @@
 import requests
 from flask import Flask, jsonify, request, render_template
+import subprocess
 
 app = Flask(__name__)
 
@@ -101,4 +102,17 @@ def get_labs():
 #curl http://localhost:5000/lab/hello
 @app.get('/lab/<lab>')
 def get_lab(lab):
-    return render_template("lab.html", lab=lab)
+
+    script_content = f'''
+    #!/bin/bash
+    lab_get() {{
+        sudo curl -fsSL "https://raw.githubusercontent.com/Nummulith/linux_labs/main/$1/$1.sh" -o "/usr/local/bin/$1.sh"
+        sudo chmod +x "/usr/local/bin/$1.sh"
+    }}
+    lab_get {lab}
+    {lab}.sh
+    '''
+
+    stdout = subprocess.run(script_content, shell=True, capture_output=True, text=True).stdout
+
+    return render_template("lab.html", lab=lab, stdout=stdout)
