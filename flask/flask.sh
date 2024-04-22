@@ -27,6 +27,7 @@ mkdir templates
 file_get templates/index.html
 file_get templates/books.html
 file_get templates/labs.html
+file_get templates/lab.html
 
 # run flask
 
