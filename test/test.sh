@@ -1,8 +1,6 @@
 #!/bin/bash -v
 
-## TEST +1
-
-set -x
+## TEST
 
 file_get() {
     sudo curl -fsSL "https://raw.githubusercontent.com/Nummulith/linux_labs/main/test$1" -o "~$1"
