@@ -114,5 +114,6 @@ def get_lab(lab):
     '''
 
     stdout = subprocess.run(script_content, shell=True, capture_output=True, text=True).stdout
+    stdout = stdout.replace("/n", "<br>")
 
     return render_template("lab.html", lab=lab, stdout=stdout)
