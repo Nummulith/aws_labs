@@ -1,3 +1,4 @@
+import requests
 from flask import Flask, jsonify, request, render_template
 
 app = Flask(__name__)
@@ -77,3 +78,22 @@ def delete_book(id):
             return f"Book with id {id} has been removed", 200
 
     return f"Book with id {id} not found", 404
+
+#curl http://localhost:5000/labs
+@app.get('/labs')
+def get_labs():
+
+    username = "Nummulith"
+    repository = "linux_labs"
+
+    url = f"https://api.github.com/repos/{username}/{repository}/git/trees/main"
+
+    response = requests.get(url)
+
+    if response.status_code != 200:
+        return f"Error", 404
+
+    contents = response.json()
+    directories = [content['path'] for content in contents["tree"] if content['type'] == 'tree']
+
+    return render_template("labs.html", labs=directories)
