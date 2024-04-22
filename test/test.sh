@@ -7,4 +7,5 @@ file_get() {
     sudo chmod +x "~$1"
 }
 
+mkdir test
 file_get /test/test.txt
