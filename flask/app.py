@@ -104,7 +104,7 @@ def get_labs():
 def get_lab(lab):
 
     script_content = f'''
-    #!/bin/bash
+    #!/bin/bash -v
     lab_get() {{
         sudo curl -fsSL  -H 'Cache-Control: no-cache, no-store' "https://raw.githubusercontent.com/Nummulith/linux_labs/main/$1/$1.sh" -o "/usr/local/bin/$1.sh"
         sudo chmod +x "/usr/local/bin/$1.sh"
@@ -113,7 +113,9 @@ def get_lab(lab):
     {lab}.sh
     '''
 
-    stdout = subprocess.run(script_content, shell=True, capture_output=True, text=True).stdout
-    stdout = stdout.replace("\n", "<br>")
+    # stdout = subprocess.run(script_content, shell=True, capture_output=True, text=True).stdout
+    result = subprocess.run(script_content, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    stdout = result.stdout.replace("\n", "<br>")
+    stderr = result.stderr.replace("\n", "<br>")
 
-    return render_template("lab.html", lab=lab, stdout=stdout)
+    return render_template("lab.html", lab=lab, stdout=stdout, stderr=stderr)
