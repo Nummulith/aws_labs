@@ -4,17 +4,9 @@
 
 set -x
 
-sudo groupadd lab_users
-sudo usermod -aG lab_users ec2-user
+file_get() {
+    sudo curl -fsSL "https://raw.githubusercontent.com/Nummulith/linux_labs/main/test/$1" -o "~/$1"
+    sudo chmod +x "~/$1"
+}
 
-sudo mkdir dir
-sudo chown ec2-user:lab_users dir
-
-touch file
-
-ll
-
-chmod u-s,g+s dir
-chmod u-s,g+s file
-
-ll
+file_get /test/test.txt
