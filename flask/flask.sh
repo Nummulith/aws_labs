@@ -35,4 +35,4 @@ file_get templates/lab.html
 export FLASK_ENV=development
 export FLASK_APP=app.py
 
-@flask run --debug --host=0.0.0.0
+flask run --debug --host=0.0.0.0
