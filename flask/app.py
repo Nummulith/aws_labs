@@ -113,8 +113,10 @@ def get_labs():
     if lab_exist(lab_cur):
         with open(lab_file(lab_cur), 'r') as file:
             script = file.read()
+    script = script.replace("\n", "<br>")
 
     result = "result"
+    result = result.replace("\n", "<br>")
 
     return render_template("labs.html", labs=directories, lab_cur=lab_cur, script=script, result=result)
 
