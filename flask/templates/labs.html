@@ -3,37 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Labs</title>
     <style>
         table {
             border-collapse: collapse;
-            width: 100%;
         }
         th, td {
             border: 1px solid #dddddd;
             text-align: left;
             padding: 8px;
+            border-bottom: 1px solid #ddd;
         }
         th {
             background-color: #f2f2f2;
         }
+        #LabsTable {
+            border-collapse: collapse;
+        }
+        #LabsTable th, #LabsTable td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
     </style>
 </head>
+
 <body>
     <h2>Labs</h2>
-    <table>
+    <table style="width: 100%;">
         <thead>
             <tr>
-                <th>Lab</th>
+                <th style="width: 300px;">Labs</th>
+                <th>Script</th>
+                <th>Result</th>
             </tr>
         </thead>
         <tbody>
-            {% for lab in labs %}
             <tr>
-                <td><a href="/lab/{{ lab }}">{{ lab }}</a></td>
+                <td>
+
+                    <table id="LabsTable" style="width: 300px;">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th style="width: 30px;"></th>
+                                <th style="width: 30px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for lab in labs %}
+                            <tr>
+                                <td><a href="/lab/{{ lab }}">{{ lab }}</a></td>
+                                <td>{{ o }}</td>
+                                <td>{{ o }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                                                    
+                </td>
+                <td>{{ script }}</td>
+                <td>{{ result }}</td>
             </tr>
-            {% endfor %}
         </tbody>
     </table>
+
 </body>
 </html>
