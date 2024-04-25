@@ -18,7 +18,7 @@ books = [
     "price": 19.99
   }  
 ]
-lab_cur = ""
+lab_cur = "hello"
 
 #curl http://localhost:5000
 @app.get('/')
@@ -124,5 +124,6 @@ def get_lab(lab):
 #curl http://localhost:5000/lab/hello/select
 @app.get('/lab/<lab>/select')
 def get_lab_select(lab):
+    global lab_cur
     lab_cur = lab
     return redirect('/labs')
