@@ -52,15 +52,13 @@
                             <tr>
                                 <th>Name</th>
                                 <th style="width: 30px;"></th>
-                                <th style="width: 30px;"></th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for lab in labs %}
                             <tr>
-                                <td{% if lab_cur == lab %} id="lab_cur"{% endif %}><a href="/lab/{{ lab }}/select">{{ lab }} {{ lab_cur }}</a></td>
-                                <td>{{ "o" }}</td>
-                                <td>{{ "o" }}</td>
+                                <td{% if lab_cur == lab.name %} id="lab_cur"{% endif %}><a href="/lab/{{ lab.name }}/select">{{ lab.name }}</a></td>
+                                <td>{% if lab.exists %} + {% endif %}</td>
                             </tr>
                             {% endfor %}
                         </tbody>

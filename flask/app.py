@@ -1,6 +1,7 @@
 import requests
 from flask import Flask, jsonify, request, render_template, redirect
 import subprocess
+import os
 
 app = Flask(__name__)
 
@@ -96,7 +97,11 @@ def get_labs():
         return f"Error", 404
 
     contents = response.json()
-    directories = [content['path'] for content in contents["tree"] if content['type'] == 'tree']
+    directories = [{"name": content['path'], "exists": os.path.isfile(os.path.join("/usr/local/bin", f"{content['path']}.sh"))}
+                    for content in contents["tree"]
+                    if content['type'] == 'tree'
+                  ]
+#   arr = [{"directory": directory, "file_exists": os.path.isfile(os.path.join("/usr/local/bin", f"{directory}.sh"))} for directory in directories]
 
     return render_template("labs.html", labs=directories, lab_cur=lab_cur)
 
