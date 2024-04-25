@@ -58,7 +58,7 @@
                         <tbody>
                             {% for lab in labs %}
                             <tr>
-                                <td {% if lab_cur == lab %}id="lab_cur"{% endif %}><a href="/lab/select/{{ lab }}">{{ lab }}</a></td>
+                                <td{% if lab_cur == lab %} id="lab_cur"{% endif %}><a href="/lab/{{ lab }}/select">{{ lab }} {{ lab_cur }}</a></td>
                                 <td>{{ "o" }}</td>
                                 <td>{{ "o" }}</td>
                             </tr>
