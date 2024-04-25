@@ -82,6 +82,12 @@ def delete_book(id):
 
     return f"Book with id {id} not found", 404
 
+def lab_file(lab):
+    return os.path.join("/usr/local/bin", f"{lab}.sh")
+
+def lab_exist(lab):
+    return os.path.isfile(lab_file(lab))
+
 #curl http://localhost:5000/labs
 @app.get('/labs')
 def get_labs():
@@ -97,13 +103,18 @@ def get_labs():
         return f"Error", 404
 
     contents = response.json()
-    directories = [{"name": content['path'], "exists": os.path.isfile(os.path.join("/usr/local/bin", f"{content['path']}.sh"))}
+    directories = [{"name": content['path'], "exists": lab_exist(content['path'])}
                     for content in contents["tree"]
                     if content['type'] == 'tree'
                   ]
 #   arr = [{"directory": directory, "file_exists": os.path.isfile(os.path.join("/usr/local/bin", f"{directory}.sh"))} for directory in directories]
 
-    return render_template("labs.html", labs=directories, lab_cur=lab_cur)
+    script = ""
+    if lab_exist(lab_cur):
+        with open(lab_file(lab_cur), 'r') as file:
+            script = file.read()
+
+    return render_template("labs.html", labs=directories, lab_cur=lab_cur, script=script)
 
 #curl http://localhost:5000/lab/hello
 @app.get('/lab/<lab>')
