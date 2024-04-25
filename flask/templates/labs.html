@@ -26,6 +26,9 @@
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
+        #lab_cur {
+            background-color: yellow;
+        }
 
     </style>
 </head>
@@ -55,9 +58,9 @@
                         <tbody>
                             {% for lab in labs %}
                             <tr>
-                                <td><a href="/lab/{{ lab }}">{{ lab }}</a></td>
-                                <td>{{ o }}</td>
-                                <td>{{ o }}</td>
+                                <td {% if lab_cur == lab %}id="lab_cur"{% endif %}><a href="/lab/select/{{ lab }}">{{ lab }}</a></td>
+                                <td>{{ "o" }}</td>
+                                <td>{{ "o" }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>

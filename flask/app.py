@@ -1,5 +1,5 @@
 import requests
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, redirect
 import subprocess
 
 app = Flask(__name__)
@@ -18,6 +18,7 @@ books = [
     "price": 19.99
   }  
 ]
+lab_cur = ""
 
 #curl http://localhost:5000
 @app.get('/')
@@ -97,7 +98,7 @@ def get_labs():
     contents = response.json()
     directories = [content['path'] for content in contents["tree"] if content['type'] == 'tree']
 
-    return render_template("labs.html", labs=directories)
+    return render_template("labs.html", labs=directories, lab_cur=lab_cur)
 
 #curl http://localhost:5000/lab/hello
 @app.get('/lab/<lab>')
@@ -119,3 +120,9 @@ def get_lab(lab):
     stderr = result.stderr.replace("\n", "<br>")
 
     return render_template("lab.html", lab=lab, stdout=stdout, stderr=stderr)
+
+#curl http://localhost:5000/lab/hello/select
+@app.get('/lab/<lab>/select')
+def get_lab(lab):
+    lab_cur = lab
+    return redirect('/labs')
