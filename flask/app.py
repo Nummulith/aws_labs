@@ -114,7 +114,9 @@ def get_labs():
         with open(lab_file(lab_cur), 'r') as file:
             script = file.read()
 
-    return render_template("labs.html", labs=directories, lab_cur=lab_cur, script=script)
+    result = "result"
+
+    return render_template("labs.html", labs=directories, lab_cur=lab_cur, script=script, result=result)
 
 #curl http://localhost:5000/lab/hello
 @app.get('/lab/<lab>')
