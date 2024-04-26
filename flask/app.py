@@ -120,6 +120,11 @@ def get_labs():
 
     return render_template("labs.html", labs=directories, lab_cur=lab_cur, script=script, result=result)
 
+
+def run(script_content):
+    # return subprocess.run(script_content, shell=True, capture_output=True, text=True).stdout
+    return subprocess.run(script_content, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+
 #curl http://localhost:5000/lab/hello
 @app.get('/lab/<lab>')
 def get_lab(lab):
@@ -134,8 +139,8 @@ def get_lab(lab):
     {lab}.sh
     '''
 
-    # stdout = subprocess.run(script_content, shell=True, capture_output=True, text=True).stdout
-    result = subprocess.run(script_content, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    result = run(script_content)
+
     stdout = result.stdout.replace("\n", "<br>")
     stderr = result.stderr.replace("\n", "<br>")
 
@@ -146,4 +151,21 @@ def get_lab(lab):
 def get_lab_select(lab):
     global lab_cur
     lab_cur = lab
+    return redirect('/labs')
+
+#curl http://localhost:5000/lab/hello/select
+@app.get('/lab/<lab>/get')
+def get_lab_get(lab):
+
+    script_content = f'''
+    #!/bin/bash -v
+    lab_get() {{
+        sudo curl -fsSL  -H 'Cache-Control: no-cache, no-store' "https://raw.githubusercontent.com/Nummulith/linux_labs/main/$1/$1.sh" -o "/usr/local/bin/$1.sh"
+        sudo chmod +x "/usr/local/bin/$1.sh"
+    }}
+    lab_get {lab}
+    '''
+
+    run(script_content)
+
     return redirect('/labs')
