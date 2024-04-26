@@ -48,7 +48,7 @@
         </thead>
         <tbody>
             <tr>
-                <td>
+                <td style="vertical-align: top;">
 
                     <table id="LabsTable" style="width: 300px;">
                         <thead>
@@ -68,7 +68,15 @@
                     </table>
                                                     
                 </td>
-                <td id="script">{{ script|safe }}</td>
+                <td id="script">
+                    {% if script == "" %}
+                    <form action="/" method="GET">
+                        <button type="submit">Get source from github</button>
+                    </form>
+                    {% endif %}
+
+                    {{ script|safe }}
+                </td>
                 <td id="result">{{ result|safe }}</td>
             </tr>
         </tbody>
