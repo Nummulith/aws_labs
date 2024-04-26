@@ -70,7 +70,7 @@
                 </td>
                 <td id="script">
                     {% if script == "" %}
-                    <form action="/lab/{{ lab.name }}/get" method="GET">
+                    <form action="/lab/{{ lab_cur }}/get" method="GET">
                         <button type="submit">Get source from github</button>
                     </form>
                     {% endif %}
