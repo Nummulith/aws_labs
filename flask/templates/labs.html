@@ -35,35 +35,17 @@
 
     </style>
 </head>
-
 <body>
-    <h2>Labs</h2>
-
-    <table style="width: 100%;">
-        <tr>
-            <td rowspan="2" class="tab">Tab 1</td>
-            <td class="content">Content 1</td>
-        </tr>
-        <tr>
-            <td rowspan="2" class="tab">Tab 2</td>
-        </tr>
-        <tr>
-            <td class="content">Content 2</td>
-        </tr>
-    </table>
-
     <table style="width: 100%;">
         <thead>
             <tr>
                 <th style="width: 300px;">Labs</th>
                 <th>Script</th>
-                <th>Result</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td style="vertical-align: top;">
-
+                <td rowspan="3" style="vertical-align: top;">
                     <table id="LabsTable" style="width: 300px;">
                         <thead>
                             <tr>
@@ -80,7 +62,6 @@
                             {% endfor %}
                         </tbody>
                     </table>
-                                                    
                 </td>
                 <td id="script">
                     {% if script == "" %}
@@ -91,6 +72,11 @@
 
                     {{ script|safe }}
                 </td>
+            </tr>
+            <tr>
+                <th>Result</td>
+            </tr>
+            <tr>
                 <td id="result">{{ result|safe }}</td>
             </tr>
         </tbody>
