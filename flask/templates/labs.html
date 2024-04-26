@@ -15,6 +15,9 @@
             padding: 8px;
             border-bottom: 1px solid #ddd;
         }
+        td {
+            vertical-align: top;
+        }
         th {
             background-color: #f2f2f2;
         }
@@ -45,7 +48,7 @@
         </thead>
         <tbody>
             <tr>
-                <td rowspan="3" style="vertical-align: top;">
+                <td{% if result != "" %} rowspan="3"{% endif %}>
                     <table id="LabsTable" style="width: 300px;">
                         <thead>
                             <tr>
@@ -65,20 +68,26 @@
                 </td>
                 <td id="script">
                     {% if script == "" %}
-                    <form action="/lab/{{ lab_cur }}/get" method="GET">
-                        <button type="submit">Get source from github</button>
-                    </form>
+                        <form action="/lab/{{ lab_cur }}/get" method="POST">
+                            <button type="submit">Get source from github</button>
+                        </form>
+                    {% else %}
+                        {{ script|safe }}
+                        <form action="/lab/{{ lab_cur }}/run" method="POST">
+                            <button type="submit">Run script</button>
+                        </form>
                     {% endif %}
 
-                    {{ script|safe }}
                 </td>
             </tr>
+            {% if result != "" %}
             <tr>
                 <th>Result</td>
             </tr>
             <tr>
                 <td id="result">{{ result|safe }}</td>
             </tr>
+            {% endif %}
         </tbody>
     </table>
 

@@ -20,6 +20,7 @@ books = [
   }  
 ]
 lab_cur = "hello"
+result = ""
 
 #curl http://localhost:5000
 @app.get('/')
@@ -115,9 +116,6 @@ def get_labs():
             script = file.read()
     script = script.replace("\n", "<br>")
 
-    result = "result"
-    result = result.replace("\n", "<br>")
-
     return render_template("labs.html", labs=directories, lab_cur=lab_cur, script=script, result=result)
 
 
@@ -149,13 +147,29 @@ def get_lab(lab):
 #curl http://localhost:5000/lab/hello/select
 @app.get('/lab/<lab>/select')
 def get_lab_select(lab):
-    global lab_cur
+    global lab_cur, result
     lab_cur = lab
+    result = ""
     return redirect('/labs')
 
-#curl http://localhost:5000/lab/hello/select
-@app.get('/lab/<lab>/get')
+#curl http://localhost:5000/lab/hello/get
+@app.post('/lab/<lab>/get')
 def get_lab_get(lab):
+    global result
+
+    run_res = run(f"{lab}.sh")
+    std_out = run_res.stdout.replace("\n", "<br>")
+    std_err = run_res.stderr.replace("\n", "<br>")
+
+    result = std_out
+    if std_err != "":
+        result += "<br>Errors:<br>" + std_err
+
+    return redirect('/labs')
+
+#curl http://localhost:5000/lab/hello/run
+@app.post('/lab/<lab>/run')
+def get_lab_run(lab):
 
     script_content = f'''
     #!/bin/bash -v
