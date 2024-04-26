@@ -97,21 +97,21 @@ def get_labs():
     repository = "linux_labs"
 
     url = f"https://api.github.com/repos/{username}/{repository}/git/trees/main"
-
     response = requests.get(url)
 
-    if response.status_code != 200:
-        return f"Error", 404
-
-    contents = response.json()
-    directories = [{"name": content['path'], "exists": lab_exist(content['path'])}
-                    for content in contents["tree"]
-                    if content['type'] == 'tree'
-                  ]
-#   arr = [{"directory": directory, "file_exists": os.path.isfile(os.path.join("/usr/local/bin", f"{directory}.sh"))} for directory in directories]
+    if response.status_code == 200:
+        contents = response.json()
+        directories = [{"name": content['path'], "exists": lab_exist(content['path'])}
+                        for content in contents["tree"]
+                        if content['type'] == 'tree'
+                    ]
+        result = ""
+    else:
+        directories = []
+        result = "Github request error"
 
     script = ""
-    if lab_exist(lab_cur):
+    if lab_cur != "" and lab_exist(lab_cur):
         with open(lab_file(lab_cur), 'r') as file:
             script = file.read()
     script = script.replace("\n", "<br>")
