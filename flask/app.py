@@ -153,7 +153,7 @@ def get_lab_select(lab):
     return redirect('/labs')
 
 #curl http://localhost:5000/lab/hello/get
-@app.post('/lab/<lab>/get')
+@app.post('/lab/<lab>/run')
 def get_lab_get(lab):
     global result
 
@@ -168,7 +168,7 @@ def get_lab_get(lab):
     return redirect('/labs')
 
 #curl http://localhost:5000/lab/hello/run
-@app.post('/lab/<lab>/run')
+@app.post('/lab/<lab>/get')
 def get_lab_run(lab):
 
     script_content = f'''
